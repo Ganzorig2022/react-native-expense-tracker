@@ -1,16 +1,17 @@
 import { StyleSheet, Text, FlatList } from 'react-native';
 
-const ExpensesList = ({ expenses }: any) => {
-  console.log(expenses);
+type Props = {
+  expenses: Expenses[];
+};
+
+const ExpensesList = ({ expenses }: Props) => {
   return (
     <FlatList
       data={expenses}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <Text>{item}</Text>}
+      renderItem={({ item }) => <Text>{item.id}</Text>}
     />
   );
 };
 
 export default ExpensesList;
-
-const styles = StyleSheet.create({});

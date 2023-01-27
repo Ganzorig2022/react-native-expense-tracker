@@ -25,7 +25,11 @@ const DUMMY_EXPENSES = [
   },
 ];
 
-const ExpensesOutput = ({ expenses, expensesPeriod }: Expenses) => {
+type Props = {
+  expensesPeriod: string;
+};
+
+const ExpensesOutput = ({ expensesPeriod }: Props) => {
   return (
     <View>
       <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
