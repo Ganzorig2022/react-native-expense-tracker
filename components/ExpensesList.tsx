@@ -2,7 +2,7 @@ import { StyleSheet, Text, FlatList } from 'react-native';
 import ExpensesItem from './ExpensesItem';
 
 type Props = {
-  expenses: Expenses[];
+  expenses: ExpensesType[];
 };
 
 const ExpensesList = ({ expenses }: Props) => {

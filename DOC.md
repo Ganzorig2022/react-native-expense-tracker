@@ -39,3 +39,12 @@ https://www.reddit.com/r/reactjs/comments/otqyq4/how_to_type_array_of_object_pro
 5. navigation dr type error zaawal DEBUGGING.md-aas vzne vv.
 
 ## MANAGE EXPENSE PAGE
+
+1. "/components/ExpensesItem.tsx" dotor ali neg list item dr darhad "navigation.navigate('ManageExpense', {id})-eer ene huudsand irne.
+2. Props-ooroo damjuulsan ID, 'ManageExpense"-ee awna.
+3. Dynamic-aar "ManageExpense" title-aa soliw.
+
+```navigation.setOptions({
+     title: isEditing ? 'Edit Expense' : 'Add Expense',
+   });
+```
