@@ -11,9 +11,11 @@ const ExpensesSummary = ({ expenses, periodName }: Props) => {
     return (sum += expense.amount);
   }, 0);
   return (
-    <View>
-      <Text>{periodName}</Text>
-      <Text>$ {expensesSum?.toFixed(2)}</Text>
+    <View className='p-2 bg-primary50 flex-row justify-between items-center rounded-md'>
+      <Text className='text-xs text-primary400'>{periodName}</Text>
+      <Text className='text-base font-bold text-primary500'>
+        $ {expensesSum?.toFixed(2)}
+      </Text>
     </View>
   );
 };

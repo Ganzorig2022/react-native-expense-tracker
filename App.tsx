@@ -7,6 +7,7 @@ import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
 import { GlobalStyles } from './constants/styles';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import IconButton from './components/ui/IconButton';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -23,6 +24,16 @@ const ExpensesOverview = () => {
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         //Background color for the active tab.
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        headerRight: ({ tintColor }) => {
+          <IconButton
+            icon='add'
+            size={24}
+            color={tintColor}
+            onPress={() => {}}
+          />;
+        },
       }}
     >
       <BottomTabs.Screen
@@ -58,13 +69,29 @@ const ExpensesOverview = () => {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: GlobalStyles.colors.primary500,
+          },
+          //header title color.
+          headerTintColor: 'white',
+        }}
+      >
         <Stack.Screen
           name='ExpensesOverview'
           component={ExpensesOverview}
-          options={{ headerShown: false }}
+          options={{ headerShown: false, title: 'Expenses Overview' }}
         />
-        <Stack.Screen name='ManageExpense' component={ManageExpense} />
+        <Stack.Screen
+          name='ManageExpense'
+          component={ManageExpense}
+          options={{
+            title: 'Manage Expenses',
+            //android-d neeh medegdkv. Modal maygaar neegdeh effect
+            presentation: 'modal',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

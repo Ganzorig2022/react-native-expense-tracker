@@ -34,3 +34,8 @@ npm install @react-navigation/bottom-tabs
 ```
 
 https://www.reddit.com/r/reactjs/comments/otqyq4/how_to_type_array_of_object_prop/
+
+4. "/components/ExpensesItem.tsx" dotor ali neg list item dr darhad "navigation.navigate('ManageExpense') huudas ruu vserne.
+5. navigation dr type error zaawal DEBUGGING.md-aas vzne vv.
+
+## MANAGE EXPENSE PAGE
