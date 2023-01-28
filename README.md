@@ -1,1 +1,1 @@
-# TYPESCRIPT + TAILWIND CSS + REACT NAVIGATOR
+# TypeScript + TailwindCSS + React Navigator  + Expo Icons
