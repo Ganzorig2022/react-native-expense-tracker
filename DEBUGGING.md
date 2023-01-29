@@ -46,3 +46,5 @@ type ProfileScreenNavigationProp = Props['navigation'];
 
 type ProfileScreenRouteProp = Props['route'];
 ```
+
+## 4 - Argument of type 'string' is not assignable to parameter of type 'never'.ts(2345)

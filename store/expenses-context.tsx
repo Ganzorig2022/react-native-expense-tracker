@@ -19,42 +19,6 @@ const DUMMY_EXPENSES = [
     amount: 29.99,
     date: new Date().toDateString(),
   },
-  {
-    id: 'e4',
-    description: 'A pair of shirts',
-    amount: 19.99,
-    date: new Date().toDateString(),
-  },
-  {
-    id: 'e5',
-    description: 'A pair of shirts',
-    amount: 39.99,
-    date: new Date().toDateString(),
-  },
-  {
-    id: 'e6',
-    description: 'A pair of shirts',
-    amount: 39.99,
-    date: new Date().toDateString(),
-  },
-  {
-    id: 'e7',
-    description: 'A pair of shirts',
-    amount: 39.99,
-    date: new Date().toDateString(),
-  },
-  {
-    id: 'e8',
-    description: 'A pair of shirts',
-    amount: 39.99,
-    date: new Date().toDateString(),
-  },
-  {
-    id: 'e9',
-    description: 'A pair of shirts',
-    amount: 29.99,
-    date: new Date().toDateString(),
-  },
 ];
 
 //1) a type for CONTEXT
@@ -91,7 +55,7 @@ function expensesReducer(state: ExpensesType[], action: ExpenseActionType) {
   switch (type) {
     case 'ADD':
       const id = new Date().toString() + Math.random().toString();
-      return [{ ...payload, id: id }, ...state];
+      return [...state, { ...payload, id: id }];
     case 'UPDATE':
       //1) find index
       const updatableExpenseIndex = state.findIndex(
@@ -121,7 +85,7 @@ const ExpensesContextProvider = ({ children }: Props) => {
   //initial state ==> DUMMY_EXPENSES
   const [expensesState, dispatch] = useReducer(expensesReducer, DUMMY_EXPENSES);
 
-  const addExpense = ({ expenseData }: any) => {
+  const addExpense = (expenseData: AddExpenseType) => {
     dispatch({ type: 'ADD', payload: expenseData });
   };
   const updateExpense = (id: string, expenseData: AddExpenseType) => {

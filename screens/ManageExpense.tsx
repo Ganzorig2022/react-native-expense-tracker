@@ -4,18 +4,21 @@ import IconButton from '../components/ui/IconButton';
 import { GlobalStyles } from '../constants/styles';
 import CustomButton from '../components/ui/CustomButton';
 import { ExpensesContext } from '../store/expenses-context';
+import ExpenseForm from '../components/ManageExpense/ExpenseForm';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-// nested object parameters type definition
-type Props = {
-  route: { params: { expenseId: string } };
-  navigation: any;
-};
+type ManageExpenseProps = NativeStackScreenProps<
+  RootStackParamList,
+  'ManageExpense'
+>;
 
-const ManageExpense = ({ route, navigation }: Props['navigation']) => {
+const ManageExpense = ({ route, navigation }: ManageExpenseProps) => {
   const expensesCTX = useContext(ExpensesContext);
+  // route ==> {name:'', params:{expenseId:''}} geh met object irne.
 
-  const editedExpenseId = route.params?.expenseId;
-  const isEditing = !!editedExpenseId; //convert string to boolean TRUE
+  const editedExpenseId = route.params?.expenseId; //undefined or 'id'
+
+  const isEditing = !!editedExpenseId; //convert undefined to FALSE, if defined then TRUE
 
   useEffect(() => {
     //https://reactnavigation.org/docs/navigation-prop/
@@ -37,19 +40,11 @@ const ManageExpense = ({ route, navigation }: Props['navigation']) => {
   };
 
   //update or add expense
-  const confirmHandler = () => {
+  const confirmHandler = (expenseData: AddExpenseType) => {
     if (isEditing) {
-      expensesCTX.updateExpense(editedExpenseId, {
-        description: 'Test!!!',
-        amount: 12.99,
-        date: '2023-01-27',
-      });
+      expensesCTX.updateExpense(editedExpenseId, expenseData);
     } else {
-      expensesCTX.addExpense({
-        description: 'Test',
-        amount: 12.99,
-        date: '2023-01-27',
-      });
+      expensesCTX.addExpense(expenseData);
     }
 
     navigation.goBack();
@@ -57,18 +52,12 @@ const ManageExpense = ({ route, navigation }: Props['navigation']) => {
 
   return (
     <View className='flex-1 p-6 bg-primary800'>
-      <View className='flex-row justify-center items-center'>
-        <CustomButton
-          mode={'flat'}
-          onPress={cancelHandler}
-          style={styles.customButton}
-        >
-          Cancel
-        </CustomButton>
-        <CustomButton style={styles.customButton} onPress={confirmHandler}>
-          {isEditing ? 'Update' : 'Add'}
-        </CustomButton>
-      </View>
+      <ExpenseForm
+        submitButtonLabel={isEditing ? 'Update' : 'Add'}
+        onSubmit={confirmHandler}
+        onCancel={cancelHandler}
+      />
+
       {isEditing && (
         <View className=' mt-4 pt-2 border-t-[1px] border-t-primary200 items-center'>
           <IconButton
@@ -84,10 +73,3 @@ const ManageExpense = ({ route, navigation }: Props['navigation']) => {
 };
 
 export default ManageExpense;
-
-const styles = StyleSheet.create({
-  customButton: {
-    minWidth: 120,
-    marginHorizontal: 8,
-  },
-});

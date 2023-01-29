@@ -9,3 +9,9 @@ interface AddExpenseType {
   amount: number;
   date: string;
 }
+
+type RootStackParamList = {
+  ManageExpense: { expenseId: string };
+  RecentExpenses: undefined;
+  ExpensesOverview: undefined;
+};

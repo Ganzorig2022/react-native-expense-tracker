@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ManageExpense from './screens/ManageExpense';
@@ -9,14 +9,16 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { GlobalStyles } from './constants/styles';
 import { StatusBar } from 'expo-status-bar';
 import ExpensesContextProvider from './store/expenses-context';
+import getHeaderTitle from './utils/getHeaderTitle';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
 const BottomTabs = createBottomTabNavigator();
 
 const ExpensesOverview = () => {
   return (
     <BottomTabs.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         headerStyle: {
           backgroundColor: GlobalStyles.colors.primary500,
         },
@@ -30,32 +32,34 @@ const ExpensesOverview = () => {
             icon='add-circle-sharp'
             size={24}
             color={tintColor}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('ManageExpense');
+            }}
           />
         ),
-      }}
+      })}
     >
       <BottomTabs.Screen
         name='RecentExpenses'
         component={RecentExpenses}
-        options={{
+        options={(route) => ({
           title: 'Recent Expenses',
           tabBarLabel: 'Recent',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name='hourglass' size={size} color={color} />
           ),
-        }}
+        })}
       />
       <BottomTabs.Screen
         name='AllExpenses'
         component={AllExpenses}
-        options={{
+        options={(route) => ({
           title: 'All Expenses',
           tabBarLabel: 'All Expenses',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name='calendar' size={size} color={color} />
           ),
-        }}
+        })}
       />
     </BottomTabs.Navigator>
   );

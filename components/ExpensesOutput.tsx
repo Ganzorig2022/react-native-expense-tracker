@@ -12,7 +12,6 @@ type Props = {
 // "/screens/AllExpenses.tsx"
 // "/screens/RecentExpenses.tsx"
 const ExpensesOutput = ({ expenses, expensesPeriod }: Props) => {
-  console.log(expenses);
   return (
     <View className='p-6 bg-primary700 flex-1'>
       <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
