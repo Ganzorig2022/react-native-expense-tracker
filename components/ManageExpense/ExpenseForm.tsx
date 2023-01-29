@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import CustomInput from './CustomInput';
 import { useState } from 'react';
 import CustomButton from '../ui/CustomButton';
@@ -17,7 +17,6 @@ const ExpenseForm = ({ submitButtonLabel, onSubmit, onCancel }: Props) => {
   });
 
   const inputChangedHandler = (inputName: string, enteredValue: string) => {
-    console.log(enteredValue);
     setInputValues((prev) => {
       return { ...prev, [inputName]: enteredValue };
     });
@@ -42,6 +41,7 @@ const ExpenseForm = ({ submitButtonLabel, onSubmit, onCancel }: Props) => {
       <CustomInput
         label='Amount'
         keyboardType='decimal-pad'
+        //bind returns a new function binded with new "this" keyword, which can be called later.
         onChangeText={inputChangedHandler.bind(this, 'amount')}
         value={inputValues.amount}
       />

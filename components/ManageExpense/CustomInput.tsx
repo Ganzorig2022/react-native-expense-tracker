@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
-import type { ReturnKeyType, KeyboardType } from 'react-native';
+import type { KeyboardType } from 'react-native';
 import React from 'react';
 
 type Props = {

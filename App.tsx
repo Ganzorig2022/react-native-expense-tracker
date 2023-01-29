@@ -1,4 +1,4 @@
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ManageExpense from './screens/ManageExpense';
@@ -9,7 +9,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { GlobalStyles } from './constants/styles';
 import { StatusBar } from 'expo-status-bar';
 import ExpensesContextProvider from './store/expenses-context';
-import getHeaderTitle from './utils/getHeaderTitle';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
