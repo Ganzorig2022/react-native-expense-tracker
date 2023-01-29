@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
 interface Props {
-  expenses: Expenses[];
+  expenses: ExpensesType[];
   periodName: string;
 }
 
